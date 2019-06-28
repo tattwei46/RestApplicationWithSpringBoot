@@ -19,6 +19,8 @@ public class UserController {
 	@Autowired
 	private UserService service;
 
+	//http://localhost:8080/users
+	
 	@GetMapping("/users")
 	public List<User> getAllUsers() {
 		List<User> users = service.getAllUsers();
