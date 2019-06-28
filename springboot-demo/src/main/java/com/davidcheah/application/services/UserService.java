@@ -18,8 +18,17 @@ public class UserService {
 		users.add(new User(1, "Bruce Banner", "hulk@avengers.inc"));
 	}
 	
-	public List<User> retrieveUsers() {
+	public List<User> getAllUsers() {
 		return users;
+	}
+	
+	public User getUser(int id) {
+		for(User user:users) {
+			if(user.getId() == id) {
+				return user;
+			}
+		}
+		return null;
 	}
 	
 }
