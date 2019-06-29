@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.davidcheah.application.services.UserService;
+import com.davidcheah.application.exception.UserNotFoundException;
 import com.davidcheah.application.model.User;
 
 @RestController
@@ -29,6 +30,10 @@ public class UserController {
 	
 	@GetMapping("/users/{id}")
 	public User getUser(@PathVariable int id) {
+		User user = service.getUser(id);
+		if(user == null) {
+			throw new UserNotFoundException("id-" + id);
+		}
 		return service.getUser(id);
 	}
 		
