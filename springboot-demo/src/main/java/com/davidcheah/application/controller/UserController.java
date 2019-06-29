@@ -46,6 +46,9 @@ public class UserController {
 	@DeleteMapping("/users/{id}")
 	public User deleteUser(@PathVariable int id) {
 		User removedUser = service.delete(id);
+		if (removedUser == null) {
+			throw new UserNotFoundException("id-" + id);
+		}
 		return removedUser;
 	}
 }
