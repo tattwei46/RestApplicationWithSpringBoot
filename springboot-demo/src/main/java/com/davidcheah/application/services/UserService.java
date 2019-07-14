@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.davidcheah.application.model.User;
 
-@Component
+@Service
 public class UserService {
 
 	private static List<User> users = new ArrayList<User>();
@@ -49,6 +49,16 @@ public class UserService {
 			}
 		}
 		return null;
+	}
+
+	public User update(int id, User updatedUser) {
+		User foundUser = getUser(id);
+		if (foundUser == null || updatedUser == null) {
+			return null;
+		}
+		foundUser.setEmail(updatedUser.getEmail());
+		foundUser.setName(updatedUser.getName());
+		return foundUser;
 	}
 
 }
